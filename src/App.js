@@ -7,15 +7,22 @@ class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			caption:1
+			caption:1,
+			sum:0
 		}
+		this.onUpdate=this.onUpdate.bind(this);
+	}
+	onUpdate(newValue,PreviousValue){
+		const valueChange = newValue-PreviousValue;
+		this.setState({sum:this.state.sum+valueChange})
 	}
   render() {
     return (
       <div className="App">
-        <ClickCounter caption={this.state.caption} />
-        <ClickCounter caption={this.state.caption} />
-        <ClickCounter caption={this.state.caption} />
+        <ClickCounter caption={this.state.caption} onUpdate={this.onUpdate}/>
+        <ClickCounter caption={this.state.caption} onUpdate={this.onUpdate}/>
+        <ClickCounter caption={this.state.caption} onUpdate={this.onUpdate}/>
+        this is counter sum:{this.state.sum}
       </div>
     );
   }

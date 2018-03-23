@@ -1,4 +1,5 @@
 import React , {Component} from "react";
+import PropTypes from "prop-types";
 
 class ClickCounter extends Component {
 	constructor(props){
@@ -8,7 +9,9 @@ class ClickCounter extends Component {
 	}
 	
 	onClickButton() {
-		this.setState({count:this.state.count+1});
+		const theValue
+		this.props.onUpdate(this.state.count,);
+		this.setState({count:this.state.count+1});	
 	}
 	
 	componentWillMount(){
@@ -16,22 +19,25 @@ class ClickCounter extends Component {
 	}
 	
 	shouldComponentUpdate(nextProps,nextState){
-		return nextState.count!=5;
 	}
-	
 	render() {
-		console.log(this.state.count)
 		const counterStyle={
 			margin:"16px"
 		}
+		
 		return (
 			<div style={counterStyle}>
 				<button onClick={this.onClickButton}>click Me</button>
 				<div>
-					this props caption:{this.state.count}
+					this props caption:{this.state.count}========={this.props.caption}
 				</div>
 			</div>
 		)
 	}
+}
+
+ClickCounter.propTypes = {
+	caption : PropTypes.number,
+	onUpdata : PropTypes.func
 }
 export default ClickCounter;
