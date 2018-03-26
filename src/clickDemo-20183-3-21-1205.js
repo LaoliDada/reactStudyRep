@@ -9,8 +9,7 @@ class ClickCounter extends Component {
 	}
 	
 	onClickButton() {
-		const theValue
-		this.props.onUpdate(this.state.count,);
+		this.props.onUpdate(this.state.count,this.state.count+1);
 		this.setState({count:this.state.count+1});	
 	}
 	
@@ -18,8 +17,6 @@ class ClickCounter extends Component {
 		console.log("componentWillMount");
 	}
 	
-	shouldComponentUpdate(nextProps,nextState){
-	}
 	render() {
 		const counterStyle={
 			margin:"16px"

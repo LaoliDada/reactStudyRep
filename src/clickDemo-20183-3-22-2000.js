@@ -1,14 +1,23 @@
 import React , {Component} from "react";
-
+import CounterStore from "./store/counterStore.js";
+import * as Actions from "./flux/Actions.js";
 class ClickCounter extends Component {
 	constructor(props){
 		super(props);
 		this.onClickButton=this.onClickButton.bind(this);
-		this.state={count:0};
+		this.onChange=this.onChange.bind(this);
+		this.state={ count: CounterStore.getCounterValues()[props.caption]};
 	}
 	
 	onClickButton() {
-		this.setState({count:this.state.count+1});
+		console.log(this.props.caption);
+		Actions.increment(this.props.caption);
+		this.onChange();
+	}
+	
+	onChange(){
+		const thisCount=CounterStore.getCounterValues()[this.props.caption];
+		this.setState({count:thisCount});
 	}
 	
 	render() {
